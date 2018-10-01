@@ -12,3 +12,19 @@ tomcat:
     - "PROJECT_NAME=${PROJECT_NAME}"
     - "ENVIRONMENT_NAME=${ENVIRONMENT_NAME}"
     - "ENVIRONMENT_TYPE=tomcat"
+  environment:
+    - JAVA_OPTS="-Dmysql-database.host=${SERVICE_NAME}_DB"
+mysql:
+  container_name: ${SERVICE_NAME}_DB
+  restart: always
+  net: ${DOCKER_NETWORK_NAME}
+  image: mysql:5.7
+  expose:
+    - "3306"
+  environment:
+    - MYSQL_ROOT_PASSWORD=petclinic
+    - MYSQL_DATABASE=petclinic
+  labels:
+    - "PROJECT_NAME=${PROJECT_NAME}"
+    - "ENVIRONMENT_NAME=${ENVIRONMENT_NAME}"
+    - "ENVIRONMENT_TYPE=mysql"
