@@ -14,8 +14,6 @@ tomcat:
     - "ENVIRONMENT_TYPE=tomcat"
   environment:
     - JAVA_OPTS="-Dmysql-database.host=${SERVICE_NAME}_DB"
-  depends_on:
-    - "mysql"
 mysql:
   container_name: ${SERVICE_NAME}_DB
   restart: always
